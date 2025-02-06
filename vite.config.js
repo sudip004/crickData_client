@@ -9,6 +9,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  base: './', // Important for correct asset paths on Vercel
+  base: '/', // Important for correct asset paths on Vercel
 });
 
