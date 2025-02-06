@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --text-color:"#1A1313";
+
+    --Base_Font_Size: 100%;
+     font-size: var(--Base_Font_Size);
+
+    --c1:rgb(42, 7, 65);
+    --c2: #FFFFFF
+}
+
+.main-Container{
+width: 100%;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+
+@media screen and (max-width: 1930px) {
+    :root {
+        --Base_Font_Size: 100%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1830px) {
+    :root {
+        --Base_Font_Size: 99%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1730px) {
+    :root {
+        --Base_Font_Size: 98%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1630px) {
+    :root {
+        --Base_Font_Size: 95%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1530px) {
+    :root {
+        --Base_Font_Size: 92%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1430px) {
+    :root {
+        --Base_Font_Size: 90%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1330px) {
+    :root {
+        --Base_Font_Size: 70%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1230px) {
+    :root {
+        --Base_Font_Size: 65%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1130px) {
+    :root {
+        --Base_Font_Size: 60%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 1030px) {
+    :root {
+        --Base_Font_Size: 55%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 930px) {
+    :root {
+        --Base_Font_Size: 50%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 830px) {
+    :root {
+        --Base_Font_Size: 45%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 730px) {
+    :root {
+        --Base_Font_Size: 40%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 630px) {
+    :root {
+        --Base_Font_Size: 35%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 530px) {
+    :root {
+        --Base_Font_Size: 30%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 430px) {
+    :root {
+        --Base_Font_Size: 30%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 330px) {
+    :root {
+        --Base_Font_Size: 25%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+@media screen and (max-width: 230px) {
+    :root {
+        --Base_Font_Size: 15%;
+        font-size: var(--Base_Font_Size);
+    }
+}
+
+

@@ -1,0 +1,279 @@
+.maincontainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(29,29,34,0.989233193277311) 15%, rgba(41,55,47,0.9836309523809523) 100%);
+    gap: 1.3rem;
+}
+.backbtn{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    }
+    .iconbackk{
+        width: 2rem;
+        height: 2rem;
+        color: #FFF;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .iconbackk:hover{
+        transform: scaleX(1.2);
+    }
+
+.firstcontainer{
+    margin-top: 1.5rem;
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+.firstleftcontainer{
+width: 50%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #FFF;
+border-radius: 20px;
+box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.2);
+}
+.firstrightcontainer{
+    position: relative;
+width: 48%;
+height: 100%;
+display: flex;
+flex-direction: column;
+gap: 1.8rem;
+
+}
+.firstrightcontainer>h2{
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #FFF;
+    font-size: 1.4rem;
+}
+
+.boxcontainer{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.leftbox{
+    position: relative;
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.2);
+}
+
+.teamname{
+width: 100%;
+height: 1.7rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #FFF;
+font-size: 1.3rem;
+
+}
+.runbox{
+width: 100%;
+height: 2.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #FFF;
+font-size: 1.3rem;
+
+}
+.overcount{
+width: 100%;
+height: 2.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #FFF;
+font-size: 1.3rem;
+
+}
+.icon{
+    width: 1.4rem;
+    height: 1.2rem;
+    color: #912a2a;
+}
+
+.vs{
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #FFF;
+    font-size: 1.4rem;
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.5);;
+}
+.firstbootmbox{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.7rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    color: #FFF;
+}
+
+.firstbootmbox>div{
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.firstbootmbox>div:hover{
+    cursor: pointer;
+    color: #4fbb6a;
+    transform: scaleX(1.05);
+}
+
+.divider {
+    width: 90%;
+    height: 2px;
+    background-color: rgb(160, 151, 151);
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.2);
+    margin: 10px 0;
+}
+.divideraling{
+    width: 1px;
+    height: 80%;
+    background-color: rgb(160, 151, 151);
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.2);
+    margin: 10px 0;
+}
+.secondContainer{
+width: 100%;
+height: 14rem;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1.2rem;
+}
+.Box1{
+width: 15rem;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
+border-radius: 10px;
+box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.2);
+}
+.Box1>h3{
+    color: #FFF;
+    font-size: 1.3rem;
+}
+.detailbox{
+    text-align: center;
+    word-wrap: break-word;
+width: 100%;
+height: 2.5rem;
+font-size: 1.1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #FFF;
+}
+
+.parabox{
+width: 100%;
+height: 2.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #FFF;
+font-size: 0.9rem;
+color: #FFF;
+}
+
+.buttonContainer{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.yesbutton{
+    width: 5rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #3b38ec;
+    color: #FFF;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.yesbutton:hover{
+    background-color: #4fbb6a;
+    transform: scale(1.05);
+}
+.nobutton{
+    width: 5rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #db1e1e;
+    color: #FFF;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.nobutton:hover{
+    background-color: #4fbb6a;
+    transform: scale(1.05);
+}
+
+
+.icon{
+    width: 1.4rem;
+    height: 1.2rem;
+    color: #912a2a;
+}

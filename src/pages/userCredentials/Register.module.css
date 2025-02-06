@@ -1,0 +1,76 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    width: 30rem;
+    max-height: 85%;
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .input {
+    font-size: 1rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .passwordWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .togglePassword {
+    font-size: 0.9rem;
+    color: #007bff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .togglePassword:hover {
+    color: #0056b3;
+  }
+  
+  .submitButton {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
+  
