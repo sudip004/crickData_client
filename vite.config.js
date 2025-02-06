@@ -3,12 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 5173,
-  },
   build: {
     outDir: 'dist',
   },
-  base: '/', // Important for correct asset paths on Vercel
+  base: '/', // Ensures correct asset paths on Netlify
 });
+
 
