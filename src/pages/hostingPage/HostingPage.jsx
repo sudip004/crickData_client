@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from './HostingPage.module.css'
-// import { FaPlus } from "react-icons/fa6";
-// import { HiMinus } from "react-icons/hi";
-// import { cricketMatchh } from "../../utils/Api"
-// import { useAppContext } from '../../context/AppContext';
+import { FaPlus } from "react-icons/fa6";
+import { HiMinus } from "react-icons/hi";
+import { cricketMatchh } from "../../utils/Api"
+import { useAppContext } from '../../context/AppContext';
 import axios from 'axios';
 import { useParams } from "react-router-dom"
 import Loading from '../../utils/lodding/Loading';
@@ -401,9 +401,9 @@ const HostingPage = () => {
               {/* Bat container start */}
               <div className={styles.runsContainer}>
                 <div className={styles.runcontainerfirstBox}>
-                  {/* <button onClick={decreaseRunByOne} ><HiMinus className={styles.plusicon} /></button> */}
+                  <button onClick={decreaseRunByOne} ><HiMinus className={styles.plusicon} /></button>
                   <div className={styles.runBox}>{matchData.teams[teamSelect].totalRuns}/{cricketMatch.teams[teamSelect].totalWickets}</div>
-                  {/* <button onClick={increaseRunByOne}><FaPlus className={styles.plusicon} /></button> */}
+                  <button onClick={increaseRunByOne}><FaPlus className={styles.plusicon} /></button>
                 </div>
                 <div className={styles.extrabolscontainer}>
                   <button onClick={increaseRunByTwo}>2</button>
@@ -417,9 +417,9 @@ const HostingPage = () => {
               {/* Boals container start */}
               <div className={styles.runsContainer}>
                 <div className={styles.runcontainerfirstBox}>
-                  {/* <button onClick={decreaseBallCount}><HiMinus className={styles.plusicon} /></button> */}
+                  <button onClick={decreaseBallCount}><HiMinus className={styles.plusicon} /></button>
                   <div className={styles.runBox}>{matchData.teams[teamSelect].totalOvers}</div>
-                  {/* <button onClick={increaseBallCount}><FaPlus className={styles.plusicon} /></button> */}
+                  <button onClick={increaseBallCount}><FaPlus className={styles.plusicon} /></button>
                 </div>
                 <div className={styles.extrabolscontainer}>
                   <button onClick={handleNoBall}>No</button>
@@ -517,8 +517,8 @@ const HostingPage = () => {
                         item.players.map((player, j) => (
                           <div key={j} className={styles.playerNameContainer}>
                             <p>{player.name}</p>
-                            {/* <div><HiMinus className={styles.playerIcon} /></div> */}
-                            {/* <div><FaPlus className={styles.playerIcon} /></div> */}
+                            <div><HiMinus className={styles.playerIcon} /></div>
+                            <div><FaPlus className={styles.playerIcon} /></div>
                           </div>
                         ))
                       }

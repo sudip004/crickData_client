@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import styles from './GamblingPage.module.css'
 import { useParams } from "react-router-dom"
 import axios from 'axios';
-// import { GiCricketBat } from "react-icons/gi";
-// import { BiSolidCricketBall } from "react-icons/bi"
+import { GiCricketBat } from "react-icons/gi";
+import { BiSolidCricketBall } from "react-icons/bi"
 import {useNavigate} from 'react-router-dom'
-// import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const GamblingPage = () => {
 
@@ -628,21 +628,21 @@ const GamblingPage = () => {
     }, [matchdata?.status]); // ✅ Runs when match status changes to "completed"
 
 
-//<IoIosArrowRoundBack className={styles.iconbackk} onClick={()=>navigate("/")}/>
-//{matchdata.teams[0].isBatting ?  <GiCricketBat className={styles.icon}/> : "" }
+
+
 
     return (
         <>
             {(matchdata && matchdata?.teams && matchdata?.teams?.length >= 2) ? (
                 <div className={styles.maincontainer}>
-                    <div className={styles.backbtn} onClick={()=>navigate("/")}></div>
+                    <div className={styles.backbtn} onClick={()=>navigate("/")}><IoIosArrowRoundBack className={styles.iconbackk} onClick={()=>navigate("/")}/></div>
                     <div className={styles.firstcontainer}>
                         <div className={styles.firstleftcontainer}>CAMERA - PART</div>
                         <div className={styles.firstrightcontainer}>
                             <h2>SAMUDRAGARH - PREMIER - LEAGUE</h2>
                             <div className={styles.boxcontainer}>
                                 <div className={styles.leftbox}>
-                                    <div className={styles.teamname}>{matchdata.teams[0].teamName} (Group-A)</div>
+                                    <div className={styles.teamname}>{matchdata.teams[0].teamName} (Group-A){matchdata.teams[0].isBatting ?  <GiCricketBat className={styles.icon}/> : "" }</div>
                                     <div className={styles.runbox}>{matchdata.teams[0].totalRuns}/{matchdata.teams[0].totalWickets}</div>
                                     <div className={styles.overcount}>({matchdata.teams[0].totalOvers}).overs</div>
                                 </div>
