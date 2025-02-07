@@ -29,24 +29,24 @@ const Login = () => {
           await new Promise((resolve) => setTimeout(resolve, 500));
 
           // ✅ Step 3: Check if the user has a balance
-          // try {
-          //     const response1 = await axios.get(`${import.meta.env.VITE_BACKENDURL}/api/balance`, {
-          //         withCredentials: true,
-          //     });
+          try {
+              const response1 = await axios.get(`${import.meta.env.VITE_BACKENDURL}/api/balance`, {
+                  withCredentials: true,
+              });
 
-          //     console.log("User balance:", response1.data);
-          // } catch (error) {
-          //     if (error.response?.status === 404) {
-          //         console.log("User does not have a balance. Creating one...");
+              console.log("User balance:", response1.data);
+          } catch (error) {
+              if (error.response?.status === 404) {
+                  console.log("User does not have a balance. Creating one...");
 
-          //         // ✅ Step 4: Create balance if it doesn't exist
-          //         await axios.post(`${import.meta.env.VITE_BACKENDURL}/api/balance`, {}, { withCredentials: true });
+                  // ✅ Step 4: Create balance if it doesn't exist
+                  await axios.post(`${import.meta.env.VITE_BACKENDURL}/api/balance`, {}, { withCredentials: true });
 
-          //         console.log("Balance created successfully!");
-          //     } else {
-          //         throw error; // Throw other errors
-          //     }
-          // }
+                  console.log("Balance created successfully!");
+              } else {
+                  throw error; // Throw other errors
+              }
+          }
 
           // ✅ Step 5: Navigate to the dashboard after balance is successfully created
           console.log("Navigating to home...");
