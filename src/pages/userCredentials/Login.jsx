@@ -31,8 +31,8 @@ const Login = () => {
           // ✅ Step 3: Check if the user has a balance
           try {
               const response1 = await axios.get(`${import.meta.env.VITE_BACKENDURL}/api/balance`, {
-                  withCredentials: true,
-              });
+                                        withCredentials: true,  // ✅ Ensures cookies are sent
+                                    });
 
               console.log("User balance:", response1.data);
           } catch (error) {
