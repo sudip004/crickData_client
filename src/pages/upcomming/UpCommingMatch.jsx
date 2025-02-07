@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from "../liveMatches/LiveMatchData.module.css"
 import { IoSearch } from "react-icons/io5";
 import { GiCricketBat } from "react-icons/gi";
@@ -7,14 +7,14 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FiAlignRight } from "react-icons/fi";
-import { NavLink , useNavigate} from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import axios from 'axios';
 
 const UpCommingMatch = () => {
     const navigate = useNavigate()
 
     const [matchdata, setmatchdata] = useState([])
-    
+
 
 
     useEffect(() => {
@@ -31,28 +31,30 @@ const UpCommingMatch = () => {
         }
         fetchData();
     }, [])
-  return (
-    <div className={styles.maincontainer}>
-                <div className={styles.headbarcontainer}>
-                    <div className={styles.headBox}>
-                        <IoSearch className={styles.searchIcon} />
-                        <input type="text" placeholder="Search Live Matches" className={styles.searchInput} />
-                        <FiAlignRight className={styles.searchIcon}/>
-                    </div>
+    return (
+        <div className={styles.maincontainer}>
+            <div className={styles.headbarcontainer}>
+                <div className={styles.headBox}>
+                    <IoSearch className={styles.searchIcon} />
+                    <input type="text" placeholder="Search Live Matches" className={styles.searchInput} />
+                    <FiAlignRight className={styles.searchIcon} />
                 </div>
-                <div className={styles.navbarBox}>
-                    <NavLink to="/" className={styles.navbarLink} >Live Matches</NavLink>
-                    <NavLink to="/liveMatches" className={styles.navbarLink} >Upcomming Matches</NavLink>
-                    <NavLink to="/" className={styles.navbarLink} >Turnaments</NavLink>
-                    <NavLink to="/balance" className={styles.navbarLink} >Account Balance</NavLink>
-                    <NavLink to="/login" className={styles.navbarLink} >Logout</NavLink>
-                    <NavLink to="/playerlistcreate" className={styles.navbarLink} >Hosting</NavLink>
-                </div>
-    
-                <div className={styles.scrollcontainer}>
-                    {/* main container Box Working */}
-                    {
-                        (matchdata) ?  matchdata
+            </div>
+            <div className={styles.navbarBox}>
+                <NavLink to="/" className={styles.navbarLink} >Live Matches</NavLink>
+                <NavLink to="/liveMatches" className={styles.navbarLink} >Upcomming Matches</NavLink>
+                <NavLink to="/" className={styles.navbarLink} >Turnaments</NavLink>
+                <NavLink to="/balance" className={styles.navbarLink} >Account Balance</NavLink>
+                <NavLink to="login" className={styles.navbarLink} >
+                                    Login
+                                </NavLink>
+                <NavLink to="/playerlistcreate" className={styles.navbarLink} >Hosting</NavLink>
+            </div>
+
+            <div className={styles.scrollcontainer}>
+                {/* main container Box Working */}
+                {
+                    (matchdata) ? matchdata
                         .map((item, i) => (
                             <div className={styles.mainBoxContainer} key={i}>
                                 <div className={styles.Boxnavber}>
@@ -78,12 +80,12 @@ const UpCommingMatch = () => {
                                 {/* <button onClick={}>VIEW DETAILS</button> */}
                             </div>
                         )) : <h1>Loading...</h1>
-    
-                    }
-                    {/*  Box Working END */}
-                </div>
+
+                }
+                {/*  Box Working END */}
             </div>
-  )
+        </div>
+    )
 }
 
 export default UpCommingMatch

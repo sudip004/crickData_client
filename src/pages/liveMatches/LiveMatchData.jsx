@@ -7,7 +7,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FiAlignRight } from "react-icons/fi";
-import { NavLink , useNavigate} from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import axios from 'axios';
 
 
@@ -16,7 +16,7 @@ const LiveMatchData = () => {
     const navigate = useNavigate()
 
     const [matchdata, setmatchdata] = useState([])
-    
+
 
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const LiveMatchData = () => {
                 <div className={styles.headBox}>
                     <IoSearch className={styles.searchIcon} />
                     <input type="text" placeholder="Search Live Matches" className={styles.searchInput} />
-                    <FiAlignRight className={styles.searchIcon}/>
+                    <FiAlignRight className={styles.searchIcon} />
                 </div>
             </div>
             <div className={styles.navbarBox}>
@@ -49,7 +49,9 @@ const LiveMatchData = () => {
                 <NavLink to="/upcomming" className={styles.navbarLink} >Upcomming Matches</NavLink>
                 <NavLink to="/" className={styles.navbarLink} >Turnaments</NavLink>
                 <NavLink to="/balance" className={styles.navbarLink} >Account Balance</NavLink>
-                <NavLink to={matchdata ? "/logout":"/login"} className={styles.navbarLink} >{matchdata ? "logout":"login"}</NavLink>
+                <NavLink to="login" className={styles.navbarLink} >
+                    Login
+                </NavLink>
                 <NavLink to="/playerlistcreate" className={styles.navbarLink} >Hosting</NavLink>
             </div>
 
@@ -57,31 +59,31 @@ const LiveMatchData = () => {
                 {/* main container Box Working */}
                 {
                     (matchdata) ? matchdata
-                    .map((item, i) => (
-                        <div className={styles.mainBoxContainer} key={i}>
-                            <div className={styles.Boxnavber}>
-                                <div className={styles.datecontainer}>Date: Today <span className={styles.livebox}>Live</span></div>
-                                <div className={styles.sharecontainer}>share with : <span><FaFacebook className={styles.faicon} /></span><span><FaInstagram className={styles.faicon} /></span><span><FaSquareXTwitter className={styles.faicon} /></span></div>
-                            </div>
-                            <h2>Samudragarh premirer ligues</h2>
-                            <div className={styles.boxBody}>
-                                <div className={styles.leftBox}>
-                                    <div className={styles.logo}></div>
-                                    <p className={styles.teamname}>{item.teams[0].teamName} (group-A){item.teams[0].isBatting ?  <GiCricketBat className={styles.icon}/> : <BiSolidCricketBall className={styles.icon}/> }</p>
-                                    <div className={styles.runscontainer}>{item.teams[0].totalRuns}/{item.teams[0].totalWickets}</div>
-                                    <p className={styles.overscon}>({item.teams[0].totalOvers}.overs)</p>
+                        .map((item, i) => (
+                            <div className={styles.mainBoxContainer} key={i}>
+                                <div className={styles.Boxnavber}>
+                                    <div className={styles.datecontainer}>Date: Today <span className={styles.livebox}>Live</span></div>
+                                    <div className={styles.sharecontainer}>share with : <span><FaFacebook className={styles.faicon} /></span><span><FaInstagram className={styles.faicon} /></span><span><FaSquareXTwitter className={styles.faicon} /></span></div>
                                 </div>
-                                <div className={styles.vs}>V/S</div>
-                                <div className={styles.leftBox}>
-                                    <div className={styles.logo1}></div>
-                                    <p className={styles.teamname}>{item.teams[1].teamName} (group-B){item.teams[1].isBatting ?  <GiCricketBat className={styles.icon}/> : <BiSolidCricketBall className={styles.icon}/> }</p>
-                                    <div className={styles.runscontainer}>{item.teams[1].totalRuns}/{item.teams[1].totalWickets}</div>
-                                    <p className={styles.overscon}>({item.teams[1].totalOvers}.overs)</p>
+                                <h2>Samudragarh premirer ligues</h2>
+                                <div className={styles.boxBody}>
+                                    <div className={styles.leftBox}>
+                                        <div className={styles.logo}></div>
+                                        <p className={styles.teamname}>{item.teams[0].teamName} (group-A){item.teams[0].isBatting ? <GiCricketBat className={styles.icon} /> : <BiSolidCricketBall className={styles.icon} />}</p>
+                                        <div className={styles.runscontainer}>{item.teams[0].totalRuns}/{item.teams[0].totalWickets}</div>
+                                        <p className={styles.overscon}>({item.teams[0].totalOvers}.overs)</p>
+                                    </div>
+                                    <div className={styles.vs}>V/S</div>
+                                    <div className={styles.leftBox}>
+                                        <div className={styles.logo1}></div>
+                                        <p className={styles.teamname}>{item.teams[1].teamName} (group-B){item.teams[1].isBatting ? <GiCricketBat className={styles.icon} /> : <BiSolidCricketBall className={styles.icon} />}</p>
+                                        <div className={styles.runscontainer}>{item.teams[1].totalRuns}/{item.teams[1].totalWickets}</div>
+                                        <p className={styles.overscon}>({item.teams[1].totalOvers}.overs)</p>
+                                    </div>
                                 </div>
+                                <button onClick={() => navigate(`/home-matchdelails/${item._id}`)}>VIEW DETAILS</button>
                             </div>
-                            <button onClick={()=>navigate(`/home-matchdelails/${item._id}`)}>VIEW DETAILS</button>
-                        </div>
-                    )) : <h1>Loading...</h1>
+                        )) : <h1>Loading...</h1>
 
                 }
                 {/*  Box Working END */}
