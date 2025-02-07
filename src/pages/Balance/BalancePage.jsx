@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './BalancePage.module.css'
 import axios from 'axios';
-import { IoIosArrowRoundBack } from "react-icons/io";
-import {useNavigate} from "react-router-dom"
+// import { IoIosArrowRoundBack } from "react-icons/io";
+// import {useNavigate} from "react-router-dom"
 
 const BalancePage = () => {
 
@@ -55,7 +55,7 @@ const BalancePage = () => {
       {
         amount ? (
           <div className={styles.maincontainer}>
-            <div className={styles.backbtn}><IoIosArrowRoundBack className={styles.iconback} onClick={()=>navigate("/")}/></div>
+            <div className={styles.backbtn}>ok</div>
             <div className={styles.balanceBox}>
               <h1>Account Balance</h1>
               <h2>₹ {amount.balance}</h2>
@@ -71,3 +71,5 @@ const BalancePage = () => {
 }
 
 export default BalancePage
+
+//<IoIosArrowRoundBack className={styles.iconback} onClick={()=>navigate("/")}/>

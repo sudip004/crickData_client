@@ -35,9 +35,9 @@ const UpCommingMatch = () => {
         <div className={styles.maincontainer}>
             <div className={styles.headbarcontainer}>
                 <div className={styles.headBox}>
-                    <IoSearch className={styles.searchIcon} />
+                    {/* <IoSearch className={styles.searchIcon} /> */}
                     <input type="text" placeholder="Search Live Matches" className={styles.searchInput} />
-                    <FiAlignRight className={styles.searchIcon} />
+                    {/* <FiAlignRight className={styles.searchIcon} /> */}
                 </div>
             </div>
             <div className={styles.navbarBox}>
@@ -59,7 +59,7 @@ const UpCommingMatch = () => {
                             <div className={styles.mainBoxContainer} key={i}>
                                 <div className={styles.Boxnavber}>
                                     <div className={styles.datecontainer}>Date: NOT YET </div>
-                                    <div className={styles.sharecontainer}>share with : <span><FaFacebook className={styles.faicon} /></span><span><FaInstagram className={styles.faicon} /></span><span><FaSquareXTwitter className={styles.faicon} /></span></div>
+                                    {/* <div className={styles.sharecontainer}>share with : <span><FaFacebook className={styles.faicon} /></span><span><FaInstagram className={styles.faicon} /></span><span><FaSquareXTwitter className={styles.faicon} /></span></div> */}
                                 </div>
                                 <h2>Samudragarh premirer ligues</h2>
                                 <div className={styles.boxBody}>
