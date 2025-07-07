@@ -95,6 +95,7 @@ const LiveMatchData = () => {
                 <NavLink to="/upcomming" className={styles.navbarLink} >complete Matches</NavLink>
                 <NavLink to="/" className={styles.navbarLink} >Turnaments</NavLink>
                 <NavLink to="/balance" className={styles.navbarLink} >Account Balance</NavLink>
+                <NavLink to="/login" className={styles.navbarLink} >Login</NavLink>
                 <NavLink className={styles.navbarLink} onClick={async () => {
                     try {
                         await axios.post(`${import.meta.env.VITE_BACKENDURL}/api/logout`, {}, { withCredentials: true });
