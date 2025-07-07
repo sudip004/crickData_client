@@ -58,6 +58,7 @@ const Login = () => {
       console.error('Login error:', error.response?.data || error.message);
     } finally {
       setLoading(false); // Stop loading
+      navigate('/');
     }
   };
 
