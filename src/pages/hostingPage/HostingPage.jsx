@@ -1,19 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from './HostingPage.module.css'
 import { FaPlus } from "react-icons/fa6";
 import { HiMinus } from "react-icons/hi";
 import { cricketMatchh } from "../../utils/Api"
 import { useAppContext } from '../../context/AppContext';
 import axios from 'axios';
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Loading from '../../utils/lodding/Loading';
+import { io } from "socket.io-client";
+import { v4 as uuidv4 } from "uuid";
 
 
 const HostingPage = () => {
 
+  const navigate = useNavigate()
+
   const { id } = useParams()
 
   const { wholedata, setWholedata } = useAppContext()
+  const [socket, setSocket] = useState(null);
+  const peerConnectionsRef = useRef({});
+
+  const [stream, setStream] = useState(null);
+  const localVideoRef = useRef();
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +42,8 @@ const HostingPage = () => {
     }
     fetchData();
   }, [id])
+
+  const [open, setOpen] = useState(false)
 
   const [teamSelect, setTeamSelect] = useState(0)
   const [whichBatter, setwhichBatter] = useState(0)
@@ -74,6 +88,100 @@ const HostingPage = () => {
       return () => clearTimeout(timer);
     }
   }, [matchData]);  // ✅ Runs only when `matchData` updates
+
+
+
+
+
+  // ✅ Start camera and handle WebRTC + streamId
+  const handleStartCamera = async () => {
+    setOpen(pre => !pre)
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+
+      if (localVideoRef.current) {
+        localVideoRef.current.srcObject = mediaStream;
+      } else {
+        console.error("localVideoRef is not attached yet.");
+        return;
+      }
+      setStream(mediaStream);
+
+      const generatedStreamId = uuidv4(); // ✅ Unique stream ID
+
+      socket.emit("join-stream", { streamId: generatedStreamId });
+
+      socket.on("user-joined", async (userId) => {
+        const peer = new RTCPeerConnection({
+          iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+        });
+
+        mediaStream.getTracks().forEach(track => {
+          peer.addTrack(track, mediaStream);
+        });
+
+        peer.onicecandidate = (e) => {
+          if (e.candidate) {
+            socket.emit("ice-candidate", {
+              to: userId,
+              candidate: e.candidate
+            });
+          }
+        };
+
+        const offer = await peer.createOffer();
+        await peer.setLocalDescription(offer);
+
+        socket.emit("offer", {
+          to: userId,
+          offer
+        });
+
+        peerConnectionsRef.current[userId] = peer; // ✅ Store peer using ref
+      });
+
+      socket.on("receive-answer", async ({ answer, from }) => {
+        const peer = peerConnectionsRef.current[from];
+        if (peer) {
+          await peer.setRemoteDescription(new RTCSessionDescription(answer));
+        } else {
+          console.warn("Peer not found for:", from);
+        }
+      });
+
+      socket.on("receive-ice-candidate", ({ candidate, from }) => {
+        const peer = peerConnectionsRef.current[from];
+        if (peer) {
+          peer.addIceCandidate(new RTCIceCandidate(candidate));
+        }
+      });
+
+      // ✅ Update backend with streamId
+      const updatedData = {
+        ...matchData,
+        isHosting: true,
+        streamId: generatedStreamId
+      };
+
+      await axios.patch(
+        `${import.meta.env.VITE_BACKENDURL}/api/matchupdate/${id}`,
+        updatedData,
+        { withCredentials: true }
+      );
+
+      setMatchData(updatedData);
+      console.log("Camera started and match updated with streamId");
+
+    } catch (err) {
+      console.error("Error starting camera:", err);
+    }
+  };
+
+
+
 
 
 
@@ -345,7 +453,7 @@ const HostingPage = () => {
 
   const handleChangestatus = (e) => {
     const { value } = e.target;
-    
+
     setMatchData((prevMatchData) => {
       if (!prevMatchData) return prevMatchData;
 
@@ -385,16 +493,40 @@ const HostingPage = () => {
     }
   };
 
+  const handelBack = () => {
+    navigate("/")
+  }
+
+  useEffect(() => {
+    const newSocket = io(import.meta.env.VITE_BACKENDURL, {
+      withCredentials: true,
+    });
+    setSocket(newSocket);
+
+    return () => newSocket.disconnect();
+  }, []);
+
 
   return (
     <>
       {matchData && matchData.teams ? (
         <div className={styles.mainContainer}>
+          <div className={styles.backBtn} onClick={handelBack}>back</div>
           <div className={styles.logoContainer}>
-            <h1>LoGo</h1>
+            <h1>Crick-DATA</h1>
           </div>
           <div className={styles.cameraContainer}>
-            <h1>Camera</h1>
+            <button onClick={handleStartCamera} style={{ cursor: 'pointer' }}>{open ? "Off Camera" : "Add Camera"}</button>
+            {open && (
+              <video
+                ref={localVideoRef}
+                autoPlay
+                muted
+                playsInline
+                className={styles.videoBox}
+              />
+            )}
+
           </div>
           <div className={styles.dataContainer}>
             <div className={styles.firstDataContainer}>

@@ -1,17 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './GamblingPage.module.css'
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import axios from 'axios';
 import { GiCricketBat } from "react-icons/gi";
 import { BiSolidCricketBall } from "react-icons/bi"
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { io } from "socket.io-client";
+
 
 const GamblingPage = () => {
 
+    const location = useLocation()
+
+    const { streamId } = location.state || {}; // ✅ Use optional chaining to avoid errors if state is undefined
+    console.log("Stream ID from location state:", streamId);
     const navigate = useNavigate()
 
     const { id } = useParams();
+
+    const remoteVideoRef = useRef(null);
+const [socket, setSocket] = useState(null);
+
 
     const [matchdata, setMatchData] = useState([])
     const [predictData, setpredictData] = useState(null)
@@ -266,7 +276,7 @@ const GamblingPage = () => {
             } else {
                 const response = await axios.post(
                     `${import.meta.env.VITE_BACKENDURL}/api/prediction/${id}`,
-                    { totalRuns: res , amountBetforrotalruns: amounttotalrun},
+                    { totalRuns: res, amountBetforrotalruns: amounttotalrun },
                     { withCredentials: true }
                 );
                 console.log("Aftertwover fun response:", response.data);
@@ -628,6 +638,65 @@ const GamblingPage = () => {
     }, [matchdata?.status]); // ✅ Runs when match status changes to "completed"
 
 
+    const handelBack = () => {
+        navigate('/');
+    }
+
+
+
+
+    useEffect(() => {
+  if (!streamId) return;
+
+  const newSocket = io(import.meta.env.VITE_BACKENDURL, {
+    withCredentials: true,
+  });
+
+  setSocket(newSocket);
+
+  let peer;
+
+  newSocket.emit("join-stream", { streamId });
+
+  newSocket.on("receive-offer", async ({ offer, from }) => {
+    peer = new RTCPeerConnection({
+      iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+    });
+
+    peer.ontrack = (event) => {
+      remoteVideoRef.current.srcObject = event.streams[0];
+    };
+
+    await peer.setRemoteDescription(new RTCSessionDescription(offer));
+    const answer = await peer.createAnswer();
+    await peer.setLocalDescription(answer);
+
+    newSocket.emit("answer", {
+      to: from,
+      answer
+    });
+
+    peer.onicecandidate = (e) => {
+      if (e.candidate) {
+        newSocket.emit("ice-candidate", {
+          to: from,
+          candidate: e.candidate
+        });
+      }
+    };
+  });
+
+  newSocket.on("receive-ice-candidate", ({ candidate, from }) => {
+    if (peer) {
+      peer.addIceCandidate(new RTCIceCandidate(candidate));
+    }
+  });
+
+  return () => {
+    if (peer) peer.close();
+    newSocket.disconnect();
+  };
+}, [streamId]);
 
 
 
@@ -635,20 +704,28 @@ const GamblingPage = () => {
         <>
             {(matchdata && matchdata?.teams && matchdata?.teams?.length >= 2) ? (
                 <div className={styles.maincontainer}>
-                    <div className={styles.backbtn} onClick={()=>navigate("/")}><IoIosArrowRoundBack className={styles.iconbackk} onClick={()=>navigate("/")}/></div>
+                    <div className={styles.backbtn} onClick={handelBack} >back</div>
                     <div className={styles.firstcontainer}>
-                        <div className={styles.firstleftcontainer}>CAMERA - PART</div>
+                        <div className={styles.firstleftcontainer}>
+                            <video
+                                ref={remoteVideoRef}
+                                autoPlay
+                                playsInline
+                                controls={false}
+                                className={styles.videoBox}
+                            />
+                        </div>
                         <div className={styles.firstrightcontainer}>
                             <h2>SAMUDRAGARH - PREMIER - LEAGUE</h2>
                             <div className={styles.boxcontainer}>
                                 <div className={styles.leftbox}>
-                                    <div className={styles.teamname}>{matchdata.teams[0].teamName} (Group-A){matchdata.teams[0].isBatting ?  <GiCricketBat className={styles.icon}/> : "" }</div>
+                                    <div className={styles.teamname}>{matchdata.teams[0].teamName} (Group-A){matchdata.teams[0].isBatting ? <GiCricketBat className={styles.icon} /> : ""}</div>
                                     <div className={styles.runbox}>{matchdata.teams[0].totalRuns}/{matchdata.teams[0].totalWickets}</div>
                                     <div className={styles.overcount}>({matchdata.teams[0].totalOvers}).overs</div>
                                 </div>
                                 <div className={styles.vs}>v/s</div>
                                 <div className={styles.leftbox}>
-                                    <div className={styles.teamname}>{matchdata.teams[1].teamName} (Group-B){matchdata.teams[1].isBatting ?  <GiCricketBat className={styles.icon}/> : "" }</div>
+                                    <div className={styles.teamname}>{matchdata.teams[1].teamName} (Group-B){matchdata.teams[1].isBatting ? <GiCricketBat className={styles.icon} /> : ""}</div>
                                     <div className={styles.runbox}>{matchdata.teams[1].totalRuns}/{matchdata.teams[1].totalWickets}</div>
                                     <div className={styles.overcount}>({matchdata.teams[1].totalOvers}).overs</div>
                                 </div>

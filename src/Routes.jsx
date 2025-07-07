@@ -25,7 +25,7 @@ export const App = () => {
         <Suspense fallback={<Loading />}>
           <Routes>
             
-            <Route path="/:id" element={<HostingPage />} />
+            <Route path="/hosting/:id" element={<HostingPage />} />
             <Route path="/playerlistcreate" element={<PlayerListCreate/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />

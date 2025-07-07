@@ -10,7 +10,21 @@ import { FiAlignRight } from "react-icons/fi";
 import { NavLink , useNavigate} from "react-router-dom"
 import axios from 'axios';
 
+import img0 from '../../assets/csk.jpg'
+import img1 from '../../assets/kkr.jpg'
+import img2 from '../../assets/mumbai.png'
+import img3 from '../../assets/rcb.jpg'
+import img4 from '../../assets/RR.jpg'
+
 const UpCommingMatch = () => {
+
+     const imagApi = [
+            img0,
+            img1,
+            img2,
+            img3,
+            img4
+        ]
     const navigate = useNavigate()
 
     const [matchdata, setmatchdata] = useState([])
@@ -64,14 +78,14 @@ const UpCommingMatch = () => {
                                 <h2>Samudragarh premirer ligues</h2>
                                 <div className={styles.boxBody}>
                                     <div className={styles.leftBox}>
-                                        <div className={styles.logo}></div>
+                                        <img className={styles.logo} src={imagApi[Math.floor(Math.random() * 5)]}/>
                                         <p className={styles.teamname}>{item.teams[0].teamName} (group-A)</p>
                                         <div className={styles.runscontainer}>{item.teams[0].totalRuns}/{item.teams[0].totalWickets}</div>
                                         <p className={styles.overscon}>({item.teams[0].totalOvers}.overs)</p>
                                     </div>
                                     <div className={styles.vs}>V/S</div>
                                     <div className={styles.leftBox}>
-                                        <div className={styles.logo1}></div>
+                                         <img className={styles.logo1} src={imagApi[Math.floor(Math.random() * 5)]}/>
                                         <p className={styles.teamname}>{item.teams[1].teamName} (group-B)</p>
                                         <div className={styles.runscontainer}>{item.teams[1].totalRuns}/{item.teams[1].totalWickets}</div>
                                         <p className={styles.overscon}>({item.teams[1].totalOvers}.overs)</p>

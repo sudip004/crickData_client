@@ -189,10 +189,8 @@ gap: 2rem;
     height: 4rem;
     border-radius: 50%;
     border: 1px solid #000;
-    background-image: url('../../assets/rcb.jpg'); /* Path from the public folder */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
+    border-radius: 50%;
 }
 .logo1{
     position: absolute;
@@ -202,10 +200,8 @@ gap: 2rem;
     height: 4rem;
     border-radius: 50%;
     border: 1px solid #000;
-    background-image: url('../../assets/kkr.jpg'); /* Path from the public folder */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+   object-fit: cover;
+    border-radius: 50%;
 }
 .teamname{
     position: absolute;

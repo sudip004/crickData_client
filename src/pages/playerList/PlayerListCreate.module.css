@@ -10,6 +10,33 @@
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
+.backbtn{
+  width: 5.5rem;
+  height: 2.1rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: #e9eff7;
+  background: #2280e6;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 400;
+}
+.backbtn:hover {
+  background: #05eea0;
+  color: #ebeff1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scaleX(1.02) scaleY(1.02);
+}
 
 .title {
   font-size: 2rem;

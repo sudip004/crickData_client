@@ -62,7 +62,7 @@ const PlayerListCreate = () => {
       alert('Match created successfully!');
       console.log(response.data);
       const pathId = response?.data?._id
-      navigate(`/${pathId}`)
+      navigate(`/hosting/${pathId}`)
     } catch (error) {
       console.error('Error creating match:', error.response?.data || error.message);
     }
@@ -71,6 +71,7 @@ const PlayerListCreate = () => {
 
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <div className={styles.backbtn} onClick={()=>navigate('/')}>back</div>
       <h1 className={styles.title}>Create Match</h1>
       <div className={styles.inputGroup}>
         <label className={styles.label}>Overs:</label>
