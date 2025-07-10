@@ -63,14 +63,18 @@ const LiveMatchData = () => {
             const response = await axios.get(`${import.meta.env.VITE_BACKENDURL}/api/checkuser`, {
                 withCredentials: true // send cookies/session if needed
             });
-            if (response) {
+            if (response.status === 200) {
                 console.log("funnnnnnnnnnnnnnnnnnxxxxxxxxXXXXx response");
                 console.log("User is authenticated, navigating to match details", matchId);
                 navigate(`/home-matchdelails/${matchId}`, { state: { streamId } });
+            }catch{
+                navigate('/')
             }
         } catch (error) {
             console.error('User not authenticated:', error);
-            navigate('/login');
+             console.log("hore krishna");
+                console.log("User is authenticated, navigating to match details", matchId);
+                navigate(`/home-matchdelails/${matchId}`, { state: { streamId } });
         }
     };
 
