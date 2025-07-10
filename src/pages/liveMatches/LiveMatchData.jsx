@@ -72,9 +72,7 @@ const LiveMatchData = () => {
             }
         } catch (error) {
             console.error('User not authenticated:', error);
-             console.log("hore krishna");
-                console.log("User is authenticated, navigating to match details", matchId);
-                navigate(`/home-matchdelails/${matchId}`, { state: { streamId } });
+             navigate('/')
         }
     };
 
