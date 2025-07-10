@@ -63,12 +63,10 @@ const LiveMatchData = () => {
             const response = await axios.get(`${import.meta.env.VITE_BACKENDURL}/api/checkuser`, {
                 withCredentials: true // send cookies/session if needed
             });
-            if (response.status === 200) {
+            if (response) {
                 console.log("funnnnnnnnnnnnnnnnnnxxxxxxxxXXXXx response");
                 console.log("User is authenticated, navigating to match details", matchId);
                 navigate(`/home-matchdelails/${matchId}`, { state: { streamId } });
-            } else {
-                navigate('/login');
             }
         } catch (error) {
             console.error('User not authenticated:', error);
