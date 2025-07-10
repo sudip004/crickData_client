@@ -67,7 +67,7 @@ const LiveMatchData = () => {
                 console.log("funnnnnnnnnnnnnnnnnnxxxxxxxxXXXXx response");
                 console.log("User is authenticated, navigating to match details", matchId);
                 navigate(`/home-matchdelails/${matchId}`, { state: { streamId } });
-            }catch{
+            }else{
                 navigate('/')
             }
         } catch (error) {
